@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:twitter_challenge/constants/sizes.dart';
+
+class ProfileButton extends StatelessWidget {
+  const ProfileButton({
+    super.key,
+    required this.profile,
+  });
+
+  final String profile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.44,
+      height: 35,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          color: Colors.grey.withOpacity(0.5),
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Text(
+          profile,
+          style: const TextStyle(
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}
