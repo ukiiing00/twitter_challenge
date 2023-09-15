@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:twitter_challenge/features/users/repos/darkmode_config_repo.dart';
@@ -12,10 +13,10 @@ void main() async {
   final repository = DarkModeConfigRepository(preferences);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => DarkModeConfigViewModel(repository),
+    ProviderScope(
+      overrides: [
+        darkmodeConfigProvider.overrideWith(
+          () => DarkModeConfigViewModel(repository),
         ),
       ],
       child: const MyApp(),
@@ -23,18 +24,13 @@ void main() async {
   );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    var darkmode = context.watch<DarkModeConfigViewModel>().dark;
+  Widget build(BuildContext context, WidgetRef ref) {
+    var darkmode = ref.watch(darkmodeConfigProvider).darkmode;
     return MaterialApp.router(
       routerConfig: router,
       title: 'Flutter Demo',

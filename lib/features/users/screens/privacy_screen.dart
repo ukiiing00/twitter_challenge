@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -7,23 +8,14 @@ import 'package:twitter_challenge/constants/gaps.dart';
 import 'package:twitter_challenge/constants/sizes.dart';
 import 'package:twitter_challenge/features/users/view_models/darkmode_config_vm.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends ConsumerWidget {
   const PrivacyScreen({super.key});
 
   static const routeUrl = 'privacy';
   static const routeName = 'privacy';
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
-}
-
-class _PrivacyScreenState extends State<PrivacyScreen> {
-  void _onPopTap() {
-    context.pop();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 100,
@@ -95,11 +87,10 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   trailing: CupertinoSwitch(
                     activeColor: Theme.of(context).appBarTheme.foregroundColor,
                     thumbColor: Theme.of(context).appBarTheme.backgroundColor,
-                    value: context.watch<DarkModeConfigViewModel>().dark,
+                    value: ref.watch(darkmodeConfigProvider).darkmode,
                     onChanged: (value) {
-                      print("onChanged $value");
-                      context
-                          .read<DarkModeConfigViewModel>()
+                      ref
+                          .read(darkmodeConfigProvider.notifier)
                           .setDarkMode(value);
                     },
                   ),
