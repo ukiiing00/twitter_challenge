@@ -187,45 +187,67 @@ class FirstTabView extends StatelessWidget {
                                             spacing: Sizes.size2,
                                             runSpacing: Sizes.size2,
                                             children: [
-                                              Container(
-                                                width: 140,
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Image.asset(
-                                                    "assets/images/finger1.png"),
+                                              Row(
+                                                children: [
+                                                  Flexible(
+                                                    child: Container(
+                                                      clipBehavior:
+                                                          Clip.hardEdge,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Image.asset(
+                                                          "assets/images/finger1.png"),
+                                                    ),
+                                                  ),
+                                                  Gaps.h2,
+                                                  Flexible(
+                                                    child: Container(
+                                                      clipBehavior:
+                                                          Clip.hardEdge,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Image.asset(
+                                                          "assets/images/finger2.png"),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                              Container(
-                                                width: 140,
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Image.asset(
-                                                    "assets/images/finger2.png"),
-                                              ),
-                                              Container(
-                                                width: 140,
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Image.asset(
-                                                    "assets/images/finger3.png"),
-                                              ),
-                                              Container(
-                                                width: 140,
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                child: Image.asset(
-                                                    "assets/images/finger4.png"),
+                                              Row(
+                                                children: [
+                                                  Flexible(
+                                                    child: Container(
+                                                      clipBehavior:
+                                                          Clip.hardEdge,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Image.asset(
+                                                          "assets/images/finger3.png"),
+                                                    ),
+                                                  ),
+                                                  Gaps.h4,
+                                                  Flexible(
+                                                    child: Container(
+                                                      clipBehavior:
+                                                          Clip.hardEdge,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      child: Image.asset(
+                                                          "assets/images/finger4.png"),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           )

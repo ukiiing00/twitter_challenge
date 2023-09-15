@@ -5,7 +5,7 @@ import 'package:twitter_challenge/constants/sizes.dart';
 import 'package:twitter_challenge/features/users/widgets/first_view.dart';
 import 'package:twitter_challenge/features/users/widgets/persistent_tab_bar.dart';
 import 'package:twitter_challenge/features/users/widgets/second_view.dart';
-import 'package:twitter_challenge/features/users/widgets/userprofile.dart';
+import 'package:twitter_challenge/features/users/widgets/profile_button.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({
@@ -15,13 +15,15 @@ class UserProfileScreen extends StatelessWidget {
 
   final menu;
 
+  static const routeUrl = "/profile";
+  static const routeName = "profile";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
         length: 2,
         child: NestedScrollView(
-          physics: const NeverScrollableScrollPhysics(),
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
@@ -177,12 +179,16 @@ class UserProfileScreen extends StatelessWidget {
                       Gaps.v16,
                       const Row(
                         children: [
-                          ProfileButton(
-                            profile: 'Edit profile',
+                          Flexible(
+                            child: ProfileButton(
+                              profile: 'Edit profile',
+                            ),
                           ),
                           Gaps.h10,
-                          ProfileButton(
-                            profile: 'Share profile',
+                          Flexible(
+                            child: ProfileButton(
+                              profile: 'Share profile',
+                            ),
                           ),
                         ],
                       ),

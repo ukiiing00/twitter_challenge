@@ -1,19 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:twitter_challenge/features/users/repos/darkmode_config_repo.dart';
+import 'package:twitter_challenge/features/users/view_models/darkmode_config_vm.dart';
 import 'package:twitter_challenge/router.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = DarkModeConfigRepository(preferences);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DarkModeConfigViewModel(repository),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var darkmode = context.watch<DarkModeConfigViewModel>().dark;
     return MaterialApp.router(
       routerConfig: router,
       title: 'Flutter Demo',
+      themeMode: darkmode ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         textTheme: const TextTheme(),
         scaffoldBackgroundColor: Colors.white,
